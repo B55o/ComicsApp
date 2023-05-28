@@ -5,6 +5,7 @@ import { transcriptionFormat } from "../code/helpers/transcriptionFormat";
 import { dateParser } from "../code/helpers/dateParser";
 import { ComicsDetailStrings } from "../code/strings/ComicDetailScreen.string";
 
+
 const ComicsDetailScreen = () => {
   const { comic } = useComicStore();
   const imgSrc = { uri: comic.img };
