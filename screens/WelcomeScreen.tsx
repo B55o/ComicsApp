@@ -9,6 +9,7 @@ import {
   Animated,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { WelcomeScreenStrings } from "../code/strings/WelcomeScreen.string";
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
@@ -51,16 +52,16 @@ const WelcomeScreen = () => {
           </Animated.View>
         ) : (
           <>
-            <Text style={styles.text}>Comics App</Text>
-            <Text style={styles.quote}>Imagination knows no limits</Text>
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
-              <Text
-                style={styles.buttonText}
-                onPress={() => {
-                  handlePress("Comics");
-                }}
-              >
-                Get comics list
+            <Text style={styles.text}>{WelcomeScreenStrings.appName}</Text>
+            <Text style={styles.quote}>{WelcomeScreenStrings.appQuote}</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                handlePress("Comics");
+              }}
+            >
+              <Text style={styles.buttonText}>
+                {WelcomeScreenStrings.btnText}
               </Text>
             </TouchableOpacity>
           </>

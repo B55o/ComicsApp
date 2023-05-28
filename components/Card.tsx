@@ -1,9 +1,19 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { CardProps } from "../code/models/Card.model";
+import { ComicGeneral } from "../code/models/comicGeneral.model";
+import { useComicStore } from "../code/state/Store";
+import { useNavigation } from "@react-navigation/native";
 
-const Card = (card: CardProps) => {
-    const imgSrc = {uri: card.img};
+const Card = (card: ComicGeneral) => {
+  const { setComic } = useComicStore();
+  const navigation = useNavigation();
+
+  const handleSelect = (target: ComicGeneral) => {
+    setComic(target);
+    navigation.navigate("Details" as never);
+  };
+
+  const imgSrc = { uri: card.img };
   return (
     <View style={styles.cardContainer}>
       <View style={styles.imageContainer}>
@@ -13,11 +23,16 @@ const Card = (card: CardProps) => {
         <Text style={styles.title}>{card.title}</Text>
         <Text style={styles.description}>{card.year}</Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={()=>{}}>
-      <Image
-              source={require("../assets/icons/forwardIcon.png")}
-              style={styles.icon}
-            />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          handleSelect(card);
+        }}
+      >
+        <Image
+          source={require("../assets/icons/forwardIcon.png")}
+          style={styles.icon}
+        />
       </TouchableOpacity>
     </View>
   );
